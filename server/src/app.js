@@ -1,9 +1,12 @@
 /**
- * Express 应用入口（骨架版）
- * 后续业务路由在 routes 目录中实现并挂载到 /api。
+ * Express 应用入口
+ * 组装：请求体解析 → 健康检查 → 静态前端 → REST API → 统一异常处理
  */
 const express = require('express');
 const path = require('path');
+
+const apiRoutes = require('./routes');
+const { notFoundHandler, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -18,5 +21,12 @@ app.get('/health', (req, res) => {
 
 // 静态前端页面（web 目录）
 app.use(express.static(path.resolve(__dirname, '../../web')));
+
+// REST API
+app.use('/api', apiRoutes);
+
+// 未匹配路由与统一异常处理（必须放在最后）
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 module.exports = app;
