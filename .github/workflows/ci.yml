@@ -1,0 +1,69 @@
+# 工作流名称，显示在仓库的 Actions 标签页
+name: Node CI
+
+# 触发条件
+on:
+  # 推送到 main 分支时触发
+  push:
+    branches: [ main ]
+  # 针对 main 分支的 Pull Request 时触发
+  pull_request:
+    branches: [ main ]
+  # 允许在 Actions 页面手动触发
+  workflow_dispatch:
+
+jobs:
+  test:
+    # 运行环境
+    runs-on: ubuntu-latest
+
+    # 矩阵策略：同时验证多个 Node.js 版本
+    strategy:
+      matrix:
+        node-version: [18, 20, 24]
+
+    # 回归测试用的真实 MySQL 服务容器
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: 123456
+          MYSQL_DATABASE: book_backend_manage
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -p123456"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    # 数据库连接参数（测试代码通过环境变量读取）
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: 123456
+      DB_NAME: book_backend_manage
+
+    steps:
+      # 1. 拉取代码
+      - uses: actions/checkout@v4
+
+      # 2. 安装指定版本的 Node.js
+      - name: 使用 Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # 3. 安装依赖（严格按 package-lock.json 安装）
+      - name: 安装依赖
+        run: npm ci
+
+      # 4. 初始化数据库（建表 + 测试数据）
+      - name: 初始化数据库
+        run: npm run init-db
+
+      # 5. 运行回归测试
+      - name: 运行测试
+        run: npm test
