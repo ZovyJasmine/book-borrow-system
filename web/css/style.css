@@ -1,0 +1,297 @@
+/* =============================================================
+   图书借阅系统 - 后台管理 公共样式
+   信息结构参照参考图（图-1 ~ 图-9），视觉风格现代化处理
+   ============================================================= */
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --head-bg: #334155;
+  --row-alt: #f8fafc;
+  --page-bg: #f1f5f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 16px 48px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 36px 28px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .08);
+}
+
+.page-title {
+  margin: 0 0 28px;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* ---------------- 查询区 ---------------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.search-bar label {
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.search-bar input[type="text"] {
+  width: 300px;
+}
+
+/* ---------------- 工具条 ---------------- */
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+
+/* ---------------- 按钮 ---------------- */
+.btn {
+  padding: 8px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-primary {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  border-color: var(--primary-dark);
+  background: var(--primary-dark);
+  color: #fff;
+}
+
+/* ---------------- 表格 ---------------- */
+.data-table {
+  width: 100%;
+  margin-top: 4px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.data-table th {
+  padding: 11px 12px;
+  background: var(--head-bg);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+/* 隔行变色 */
+.data-table tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+.data-table tbody tr:hover {
+  background: var(--primary-soft);
+}
+
+.data-table .ops a {
+  margin-right: 10px;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.data-table .ops a:last-child {
+  margin-right: 0;
+}
+
+.data-table .ops a:hover {
+  text-decoration: underline;
+}
+
+.data-table .ops a.link-danger {
+  color: var(--danger);
+}
+
+.empty-row td {
+  padding: 36px 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------------- 分页 ---------------- */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: var(--muted);
+}
+
+.pagination .page-btn {
+  min-width: 34px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.pagination .page-btn:hover:not(:disabled):not(.active) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.pagination .page-btn.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.pagination .page-btn:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.pagination .jump {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.pagination .jump input {
+  width: 52px;
+  height: 32px;
+  padding: 0 6px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.pagination .jump input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* ---------------- 表单 ---------------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 110px minmax(0, 1fr);
+  gap: 20px 24px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.form-grid label {
+  text-align: right;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.form-grid .required::after {
+  content: " *";
+  color: var(--danger);
+}
+
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+  outline: none;
+}
+
+/* 只读 / 禁用状态（查看页全部字段、修改页的入库人与入库时间） */
+input[readonly],
+input[disabled],
+select[disabled] {
+  background: #f8fafc;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+input.invalid,
+select.invalid {
+  border-color: var(--danger);
+  background: #fef2f2;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.span-2 {
+  grid-column: span 3;
+}

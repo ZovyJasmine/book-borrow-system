@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新增图书信息</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+    <h1 class="page-title">新增图书信息</h1>
+
+    <form id="book-form" autocomplete="off" novalidate>
+      <div class="form-grid">
+        <label class="required" for="bookCode">图书编号:</label>
+        <input type="text" id="bookCode">
+
+        <label class="required" for="bookName">图书名称:</label>
+        <input type="text" id="bookName">
+
+        <label class="required" for="bookType">图书类型:</label>
+        <select id="bookType">
+          <option value="">——请选择——</option>
+        </select>
+
+        <label for="bookAuthor">作者:</label>
+        <input type="text" id="bookAuthor">
+
+        <label for="publishPress">出版社:</label>
+        <input type="text" id="publishPress">
+
+        <label class="required" for="borrowed">是否借阅:</label>
+        <select id="borrowed">
+          <option value="0">未借阅</option>
+          <option value="1">已借阅</option>
+        </select>
+
+        <label class="required" for="createdBy">入库人:</label>
+        <input type="text" id="createdBy" value="系统管理员">
+
+        <label class="required" for="creationTime">入库时间:</label>
+        <input type="date" id="creationTime">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">保存</button>
+        <button type="button" class="btn" id="btn-back">返回</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="vendor/jquery-3.7.1.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/add.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图书借阅系统-后台管理</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+    <h1 class="page-title">图书借阅系统-后台管理</h1>
+
+    <!-- 查询区：图书名称模糊查询 -->
+    <form class="search-bar" id="search-form" autocomplete="off">
+      <label for="bookName">图书名称:</label>
+      <input type="text" id="bookName" placeholder="请输入图书名称">
+      <button type="submit" class="btn btn-primary">查询</button>
+    </form>
+
+    <!-- 新增入口 -->
+    <div class="toolbar">
+      <button type="button" class="btn" id="btn-add">新增</button>
+    </div>
+
+    <!-- 图书列表 -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>图书编号</th>
+          <th>图书分类</th>
+          <th>图书名称</th>
+          <th>作者</th>
+          <th>出版社</th>
+          <th>入库时间</th>
+          <th>是否借阅</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="book-list"></tbody>
+    </table>
+
+    <!-- 分页 -->
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <script src="vendor/jquery-3.7.1.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/list.js"></script>
+</body>
+</html>
